@@ -13,7 +13,8 @@ myFormulario.addEventListener("submit", async(e)=>{
     config.method = "POST";
     let data = Object.fromEntries(new FormData(e.target));
     config.body = JSON.stringify(data);
-    let res = await (await fetch("api.php", config)).json();
-    document.querySelector("pre").innerHTML = res.mensaje;
+    console.log(data);
+    let res = await (await fetch("api.php", config)).text();
+    document.querySelector("pre").innerHTML = res;
     console.log(res);
 })
