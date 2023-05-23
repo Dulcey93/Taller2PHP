@@ -16,5 +16,4 @@ myFormulario.addEventListener("submit", async(e)=>{
     console.log(data);
     let res = await (await fetch("api.php", config)).text();
     document.querySelector("pre").innerHTML = res;
-    console.log(res);
 })

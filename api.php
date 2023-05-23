@@ -42,17 +42,12 @@ echo json_encode($mensaje,JSON_PRETTY_PRINT);
     $_DATA = json_decode(file_get_contents("php://input"), true);
     $METHOD = $_SERVER["REQUEST_METHOD"];
 
-    function validacion(){
-        $arg = func_num_args();
-        $arg = array_pop($arg);
-        ($arg<=3.9) ? "Estudie" : "becado";
+    function validacion($res){
+        return ($res<=3.9) ? "Estudie" : "becado";
     }
-    function promedio(){
-        var_dump(func_num_args());
-        $arg = func_num_args();
-        $arg = array_pop($arg);
+    function promedio($_DATA){
         $suma = (float) 0;
-        foreach ($arg as $key => $value) {
+        foreach ($_DATA as $key => $value) {
             if(!is_numeric($value)){
                 $suma=0;
                 break;
@@ -62,13 +57,14 @@ echo json_encode($mensaje,JSON_PRETTY_PRINT);
         }
         return $suma;
     }
-    function algoritmo($nota, $nota2, $nota3){
-        $res = promedio();
-        return (float) $res/count($_DATA);
+    function algoritmo($_DATA){
+        $res = promedio($_DATA);
+        $res = ($res==0) ? 0 : $res/count($_DATA);
+        return $res;
     }
    
     $res = match($METHOD){
-        "POST" => algoritmo(...$_DATA)
+        "POST" => algoritmo($_DATA)
     };
 
     $mensaje = (array) [
@@ -77,7 +73,7 @@ echo json_encode($mensaje,JSON_PRETTY_PRINT);
         "promedio"=> $res
     ];
 
-    // echo json_encode($mensaje,JSON_PRETTY_PRINT);
+    echo json_encode($mensaje, JSON_PRETTY_PRINT);
 
     class Operacion{
 
