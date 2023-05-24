@@ -72,7 +72,8 @@ exercise4.addEventListener("submit", async (e) => {
     contadorPersonas++;
 
     if (contadorPersonas === 3) {
-        
+        //Desahibilitamos el botón de enviar
+      document.querySelector("#btnEnviar").disabled = true;
     } else {
       e.target.reset();
     }

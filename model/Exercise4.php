@@ -1,5 +1,5 @@
 <?php
-//Encontrar errores
+// Encontrar errores
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -13,15 +13,21 @@ $METHOD = $_SERVER["REQUEST_METHOD"];
 $nombre = $_DATA["name"];
 $edad = $_DATA["age"];
 
-session_start(); // Iniciar la sesión
+session_start();
 
+// Si no existe la variable de sesión, crearla
 if (!isset($_SESSION["personas"])) {
-    $_SESSION["personas"] = []; // Inicializar el array de personas en la sesión
+    $_SESSION["personas"] = [];
 }
 
 function agregarPersona($nombre, $edad): Persona {
+    //Limpiar el array
+    count($_SESSION["personas"]) >= 3 ? $_SESSION["personas"] = [] : null;
+
+    // Agregar la persona al array
     $persona = new Persona($nombre, $edad);
-    $_SESSION["personas"][] = $persona; // Agregar la persona al array en la sesión
+    array_push($_SESSION["personas"], $persona);
+
     return $persona;
 }
 
@@ -32,12 +38,12 @@ function obtenerMayorEdad($personas): string {
             $mayorEdad = $persona;
         }
     }
-    return $mayorEdad->getNombre();
+    return $mayorEdad->getNombre(). " con " . $mayorEdad->getEdad() . " años.";
 }
 
-//Función para validar si se ingresaron las 3 personas
-function validarPersonas($personas): string{
-    if (count($personas) === 3) {
+// Función para validar si se ingresaron las 3 personas
+function validarPersonas($personas): string {
+    if (count($personas) >= 3) {
         $resultado = obtenerMayorEdad($personas);
         return "La persona de mayor edad es: " . $resultado;
     } else {
@@ -45,13 +51,13 @@ function validarPersonas($personas): string{
     }
 }
 
-$res = match($METHOD) {
+$res = match ($METHOD) {
     "POST" => agregarPersona($nombre, $edad),
 };
 
 $mensaje = [
     "mensaje" => validarPersonas($_SESSION["personas"]),
-    "data" => $_DATA,
+    "input" => $_DATA,
     "resultado" => obtenerMayorEdad($_SESSION["personas"])
 ];
 
