@@ -4,17 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller2 PHP</title>
+    <title>Taller PHP | Santiago Dulcey</title>
     <link rel="stylesheet" href="styles.css">
     <script src="main.js" defer></script>
 </head>
 <body>
-    <form id="myFormulario">
-        <input type="text" name="nota" pattern="[0-9]+" required placeholder="Ingrese la nota 1"><br>
-        <input type="text" name="nota2" pattern="[0-9]+" required placeholder="Ingrese la nota 2"><br>
-        <input type="text" name="nota3" pattern="[0-9]+" required placeholder="Ingrese la nota 3"><br>
-        <input type="submit" value="Enviar">
-   </form>
-   <pre></pre>
+   <fieldset>
+        <legend>Exercise 1 Notas</legend>
+        <form id="exercise1">
+                <input type="text" name="nota" pattern="[0-9]+" required placeholder="Ingrese la nota 1"><br>
+                <input type="text" name="nota2" pattern="[0-9]+" required placeholder="Ingrese la nota 2"><br>
+                <input type="text" name="nota3" pattern="[0-9]+" required placeholder="Ingrese la nota 3"><br>
+                <input type="submit" value="Enviar">
+        </form>
+        <pre id="answer1"></pre>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Exercise 2 par o impar</legend>
+        <form id="exercise2">
+                <input type="text" name="numero" pattern="[0-9]+" required placeholder="Ingrese el numero"><br>
+                <input type="submit" value="Enviar">
+        </form>
+        <pre id="answer2"></pre>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Exercise 3 Circuito</legend>
+        <form id="exercise3">
+                <input type="text" name="resistance" pattern="[0-9]+" required placeholder="Put a resistance"><br>
+                <input type="text" name="current" pattern="[0-9]+" required placeholder="Put a current"><br>
+                <input type="submit" value="Enviar">
+        </form>
+        <pre id="answer3"></pre>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Exercise 4 Personas</legend>
+        <form id="exercise4">
+                <input type="text" name="name" required placeholder="Put a name"><br>
+                <input type="text" name="age" pattern="[0-9]+" required placeholder="Put an age"><br>
+                <input type="submit" value="Enviar">
+        </form>
+        <pre id="answer4"></pre>
+    </fieldset>
 </body>
 </html>
