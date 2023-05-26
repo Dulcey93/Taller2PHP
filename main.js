@@ -81,3 +81,24 @@ exercise4.addEventListener("submit", async (e) => {
     console.log("Este es el error: " + error);
   }
 });
+
+/* 5. Construir el algoritmo que lea por teclado dos números,
+si el primero es mayor al segundo informar su suma y
+diferencia, en caso contrario, informar el producto y la
+división del primero respecto al segundo. */
+
+let exercise5 = document.querySelector("#exercise5");
+
+exercise5.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  config.method = "POST";
+  let data = Object.fromEntries(new FormData(e.target));
+  config.body = JSON.stringify(data);
+  console.log(data);
+  try {
+    let res = await (await fetch("model/Exercise5.php", config)).text();
+    document.querySelector("#answer5").innerHTML = res;
+  } catch (error) {
+    console.log("Este es el error: " + error);
+  }
+});
